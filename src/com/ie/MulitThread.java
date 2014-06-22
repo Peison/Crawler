@@ -15,7 +15,7 @@ public class MulitThread {
 		
 		long s = System.currentTimeMillis();
 		//fixed pool
-		ExecutorService executor = Executors.newFixedThreadPool(100);		
+		ExecutorService executor = Executors.newFixedThreadPool(12);		
 		
 		/*
 		//第一个版本的多线程
@@ -27,13 +27,13 @@ public class MulitThread {
 		
 		//第二个版本的多线程272600
 		Queue queue = new Queue();
-		for(int i = 996000; i < 1150001; i++){
-			if(i > 1006000) break;
+		for(int i = 1026000; i < 1150001; i++){
+			if(i > 1027000) break;
 			queue.enQueue(String.valueOf(i));			
 		}		
 			
-		for(int i = 0; i < 50; i++){
-			executor.execute(new JD(queue,i));						
+		for(int i = 0; i < 10; i++){
+			executor.execute(new JD(queue,i));				
 		}
 		executor.shutdown();		
 		
