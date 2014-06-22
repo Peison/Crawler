@@ -42,4 +42,8 @@
 	
 	
 	阻塞队列，生产者消费者模型
+	参考博文：
+	http://www.cnblogs.com/ggzwtj/archive/2012/04/10/2440882.html
+	http://www.blogjava.net/xylz/archive/2011/01/08/342609.html
+	http://www.oschina.net/code/snippet_121175_3352
 	
