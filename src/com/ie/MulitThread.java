@@ -2,7 +2,7 @@ package com.ie;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
+
 
 public class MulitThread {
 	
@@ -25,14 +25,14 @@ public class MulitThread {
 		executor.shutdown();
 		*/
 		
-		//第二个版本的多线程
+		//第二个版本的多线程272600
 		Queue queue = new Queue();
-		for(int i = 272400; i < 1150001; i++){
-			if(i > 272600) break;
+		for(int i = 996000; i < 1150001; i++){
+			if(i > 1006000) break;
 			queue.enQueue(String.valueOf(i));			
 		}		
 			
-		for(int i = 0; i < 10; i++){
+		for(int i = 0; i < 50; i++){
 			executor.execute(new JD(queue,i));						
 		}
 		executor.shutdown();		
