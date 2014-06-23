@@ -34,7 +34,9 @@ public class test {
 
 		}
 	}
+	
 
+	
 	public static void main(String[] args) {
 		// pocline("http://product.pconline.com.cn/mobile/samsung/517260_detail.html");
 
@@ -56,6 +58,8 @@ public class test {
 			System.out.println("≈–∂œ£∫" + (s2 - s1) + " |œ¬‘ÿ£∫" + (s3 - s2)
 					+ " s | " + jd.getDownloadpath()+" "+i);
 		}
+		
+		
 				
 	}
 

@@ -178,7 +178,7 @@ public class JD implements Runnable {
 				if (queue.isEmpty())
 					break;
 				i = queue.deQueue();
-				System.out.println(id + " takes " + i);
+				System.out.println(id + "\t| takes " + i);
 				lastAliveTime = (System.currentTimeMillis() - s)/1000;
 			}
 
@@ -187,7 +187,7 @@ public class JD implements Runnable {
 				if (this.isCellphonePage("http://item.jd.com/" + i + ".html")) {
 					if (this.catchToLocal("http://item.jd.com/" + i + ".html",
 							i)) {
-						System.out.println(brand + ";" + version + ";" + i);
+						System.out.println("=========="+brand + ";" + version + ";" + i+"==========");
 						// 把手机ID记录到一个文件中,如果需要进行第二次搜索将可以大大缩短时间
 						synchronized ("writer") {
 							BufferedWriter writer = new BufferedWriter(
@@ -207,7 +207,7 @@ public class JD implements Runnable {
 		// 队列为空，线程结束退出
 		synchronized ("terminal") {
 			System.out.println(id + "\t| " + (System.currentTimeMillis() - s)
-					+ "ms " + " " + (MulitThread.termail++));
+					+ "ms | " + " " + (MulitThread.termail++));
 		}
 
 	}
