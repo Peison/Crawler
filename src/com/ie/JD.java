@@ -207,7 +207,7 @@ public class JD implements Runnable {
 		// 队列为空，线程结束退出
 		synchronized ("terminal") {
 			System.out.println(id + "\t| " + (System.currentTimeMillis() - s)
-					+ "ms | " + " " + (MulitThread.termail++));
+					+ "ms | " + " " + (MulitThread.termail++) + " | queue size"+queue.getSize());
 		}
 
 	}

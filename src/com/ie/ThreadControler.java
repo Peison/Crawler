@@ -6,7 +6,9 @@ import java.util.Iterator;
 public class ThreadControler implements Runnable{
 	
 	private ArrayList<Thread> list;
-	Queue queue;
+	private Queue queue;
+	private int loopTimeGap = 5000;
+	private int killWait = 120000;
 	
 	public ThreadControler(){		
 	}
@@ -29,11 +31,17 @@ public class ThreadControler implements Runnable{
 		
 		//每隔1秒查询任务队列是不是为空，查询无法正常结束的线程的线程栈，并手动结束；
 		while(true){			
+			
 			//队列是否为空
 			if(queue.isEmpty()){												
 				//为了防止手动结束  可以正常结束的进程，当查询到队列为空后，先等待
 				System.out.println("=================== queue is empty ===================");
-				Thread.yield();
+				
+				try {
+					Thread.sleep(killWait);//等待时间必须由队列大小确定？？
+				} catch (InterruptedException e1) {					
+					e1.printStackTrace();
+				}
 				
 				System.out.println("=================== stop all thread ===================");
 				
@@ -45,17 +53,30 @@ public class ThreadControler implements Runnable{
 							System.out.println(t.getId() + " 方法名："+e.getMethodName()+" at "+e.getLineNumber());
 						}						
 						System.err.println("----------"+t.getName()+" "+t.getId()+" has terminaled by controler!");
-						t = null;
+						t.interrupt();
 					}	
 				}
 				break;
 			}				
-			//每隔一秒查询一次
+
+			//每隔n秒查询一次，n怎么确定
 			try{
-				Thread.sleep(5000);
+				Iterator<Thread> iterator = list.iterator();
+				while(iterator.hasNext()){				
+					Thread t = iterator.next();														
+					if(!t.isAlive()){
+						iterator.remove();
+					}
+				}
+				
+				Thread.sleep(loopTimeGap);
 			}catch(InterruptedException e){
 				e.printStackTrace();
 			}
+			
+			//如果线程队列为空，监测线程结束
+			if(list.isEmpty())
+				break;
 		}		
 		System.out.println("=================== controler has stoped ===================");
 		
