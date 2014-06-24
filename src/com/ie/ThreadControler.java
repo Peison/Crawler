@@ -2,19 +2,27 @@ package com.ie;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class ThreadControler implements Runnable{
 	
 	private ArrayList<Thread> list;
 	private Queue queue;
+	ExecutorService poolExecutor;
 	private int loopTimeGap = 5000;
-	private int killWait = 120000;
+	private int killWait = 150000;
 	
 	public ThreadControler(){		
 	}
 	
 	public ThreadControler(ArrayList<Thread> list,Queue queue){
 		this.list = list;
+		this.queue = queue;
+	}
+	
+	public ThreadControler(ExecutorService e,Queue queue){
+		poolExecutor = e;
 		this.queue = queue;
 	}
 	
@@ -45,7 +53,7 @@ public class ThreadControler implements Runnable{
 				
 				System.out.println("=================== stop all thread ===================");
 				
-				Iterator<Thread> iterator = list.iterator();
+				/*Iterator<Thread> iterator = list.iterator();
 				while(iterator.hasNext()){				
 					Thread t = iterator.next();				
 					if(t.isAlive()){
@@ -53,30 +61,24 @@ public class ThreadControler implements Runnable{
 							System.out.println(t.getId() + " 方法名："+e.getMethodName()+" at "+e.getLineNumber());
 						}						
 						System.err.println("----------"+t.getName()+" "+t.getId()+" has terminaled by controler!");
-						t.interrupt();
+						
 					}	
-				}
+				}*/
+				poolExecutor.shutdownNow();
+				
 				break;
 			}				
 
-			//每隔n秒查询一次，n怎么确定
-			try{
-				Iterator<Thread> iterator = list.iterator();
-				while(iterator.hasNext()){				
-					Thread t = iterator.next();														
-					if(!t.isAlive()){
-						iterator.remove();
-					}
-				}
-				
+			//每隔loopTimeGap秒查询一次，loopTimeGap怎么确定
+			try{								
 				Thread.sleep(loopTimeGap);
 			}catch(InterruptedException e){
 				e.printStackTrace();
 			}
 			
 			//如果线程队列为空，监测线程结束
-			if(list.isEmpty())
-				break;
+			//if(list.isEmpty())
+				//break;
 		}		
 		System.out.println("=================== controler has stoped ===================");
 		
