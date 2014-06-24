@@ -31,13 +31,14 @@ public class MulitThread {
 			queue.enQueue(String.valueOf(i));			
 		}		
 			
-		for(int i = 0; i < 15; i++){
+		for(int i = 0; i < 50; i++){
 			executor.execute(new JD(queue,i));				
 		}
 		
 		new Thread(new ThreadControler(executor,queue)).start();
 		
 		executor.shutdown();
+		
 		
 		/*ArrayList<Thread> list = new ArrayList<Thread>();		
 		for(int i = 0; i < 50; i++){			

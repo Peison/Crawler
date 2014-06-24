@@ -81,7 +81,7 @@ public class ThreadControler implements Runnable{
 				//break;
 		}		
 		System.out.println("=================== controler has stoped ===================");
-		
+		System.exit(0);
 	}
 
 }
