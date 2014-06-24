@@ -11,7 +11,7 @@ public class ThreadControler implements Runnable{
 	private Queue queue;
 	ExecutorService poolExecutor;
 	private int loopTimeGap = 5000;
-	private int killWait = 150000;
+	private int killWait = 15000;
 	
 	public ThreadControler(){		
 	}
@@ -81,7 +81,7 @@ public class ThreadControler implements Runnable{
 				//break;
 		}		
 		System.out.println("=================== controler has stoped ===================");
-		
+		System.exit(0);
 	}
 
 }

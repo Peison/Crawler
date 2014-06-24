@@ -208,8 +208,7 @@ public class JD implements Runnable {
 		synchronized ("terminal") {
 			System.out.println(id + "\t| " + (System.currentTimeMillis() - s)
 					+ "ms | " + " " + (MulitThread.termail++) + " | queue size"+queue.getSize());
-		}
-
+		}		
 	}
 
 }
