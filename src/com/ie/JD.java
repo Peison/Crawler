@@ -27,7 +27,6 @@ public class JD implements Runnable {
 
 	private static String brand = "";
 	private static String version = "";
-	private long lastAliveTime = 0;
 	
 	// 抓取队列
 	Queue queue = null;
@@ -178,8 +177,7 @@ public class JD implements Runnable {
 				if (queue.isEmpty())
 					break;
 				i = queue.deQueue();
-				System.out.println(id + "\t| takes " + i);
-				lastAliveTime = (System.currentTimeMillis() - s)/1000;
+				System.out.println(id + "\t| takes " + i);				
 			}
 
 			// 如果是手机页面，进行抓取
