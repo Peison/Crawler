@@ -1,6 +1,6 @@
 package com.ie;
 
-import java.util.ArrayList;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,8 +17,11 @@ public class MulitThread {
 		ExecutorService executor = Executors.newFixedThreadPool(100);
 
 		/*
-		 * //第一个版本的多线程 for(int i = 0; i < 14; i++){ executor.execute(new
-		 * JD(1000000+i*100,1000100+i*100)); } executor.shutdown();
+		 * 第一个版本的多线程 
+		 * for(int i = 0; i < 14; i++){
+		 *  	executor.execute(newJD(1000000+i*100,1000100+i*100)); 
+		 *  } 
+		 *  executor.shutdown();
 		 */
 
 		// 第二个版本的多线程272600
